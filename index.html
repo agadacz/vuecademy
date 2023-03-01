@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vuecademy</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="shopping-list">
+      <h1>{{ header }}</h1>
+      <!-- 
+        v-model
+        - it does two-way data binding!
+
+        Variants:
+        - v-model.lazy - updates only when the input is blurred
+        - v-model.number - casts that to number (by default it's string)
+        - v-model.trim - automatically trims the string
+       -->
+      <input v-model="newEmoji" type="text" placeholder="Democratically suggest a new best emoji" />
+      
+      <label>
+        <input v-model="newEmojiPriority" type="radio" value="low" />
+        Place low
+      </label>
+      <label>
+        <input v-model="newEmojiPriority" type="radio" value="high" />
+        Place high
+      </label>
+
+      <ol>
+        <li v-if="showEmojiWhen('high')">{{newEmoji}}</li>
+        <li v-for="{id, label} in items" :key="id">{{ label }}</li>
+        <li v-if="showEmojiWhen('low')">{{newEmoji}}</li>
+      </ol>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      const vue = Vue.createApp({
+        data() {
+          return {
+            header: "Democratic list of the best vanilla emojis",
+            newEmoji: '',
+            newEmojiPriority: 'low',
+            items: [
+              {id: 1, label: ':3'},
+              {id: 2, label: '>:c'},
+              {id: 3, label: 'owo'},
+            ]
+          }
+        },
+        methods: {
+          showEmojiWhen(placement) {
+            return this.newEmoji && this.newEmojiPriority === placement
+          }
+        }
+      }).mount("#shopping-list")
+    </script>
+  </body>
+</html>
