@@ -1,0 +1,16 @@
+body {
+  background-color: black;
+  color: white;
+  padding: 24px;
+  font-family: Raleway, Verdana, sans-serif;
+}
+
+#emoji-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0
+}
